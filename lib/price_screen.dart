@@ -55,13 +55,12 @@ class _PriceScreenState extends State<PriceScreen> {
             color: Colors.lightBlue,
             child: DropdownButton<String>(
               value: selectedCurrency,
-              items:[],
-              // items: currencyList.map<DropdownMenuItem<String>>((String value) {
-              //   return DropdownMenuItem<String>(
-              //     value: value,
-              //     child: Text(value),
-              //   );
-              // }).toList(),
+              items: currencyList.map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
               onChanged: (value) {
                 setState(() {
                   selectedCurrency = value!;
