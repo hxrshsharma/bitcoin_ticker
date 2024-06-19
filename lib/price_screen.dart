@@ -62,9 +62,7 @@ class _PriceScreenState extends State<PriceScreen> {
         children: [for (String i in currenciesList) Text(i)]);
   }
 
-  getList(){
-    
-  }
+  getList() {}
 
   Future<dynamic> getdata(String cur) async {
     Network network = Network(
@@ -105,7 +103,7 @@ class _PriceScreenState extends State<PriceScreen> {
                         padding: const EdgeInsets.symmetric(
                             vertical: 15.0, horizontal: 28.0),
                         child: Text(
-                          '1 $e = $val $selectedCurrency ,$e',
+                          '1 $e = $val $selectedCurrency',
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                             fontSize: 20.0,
