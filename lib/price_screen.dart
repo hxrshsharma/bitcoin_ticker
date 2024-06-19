@@ -1,5 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api
 
+import 'dart:io' show Platform;
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import './coin_data.dart';
 
@@ -14,6 +16,42 @@ class PriceScreen extends StatefulWidget {
 }
 
 class _PriceScreenState extends State<PriceScreen> {
+  DropdownButton<String> andrd() {
+    return DropdownButton(
+        value: selectedCurrency,
+        items: [
+          for (String i in currenciesList)
+            DropdownMenuItem(
+              value: i,
+              child: Text(i),
+            )
+        ],
+        onChanged: (value) {
+          setState(() {
+            selectedCurrency = value!;
+          });
+        });
+//               // items: currencyList.map<DropdownMenuItem<String>>((String value) {
+//               //   return DropdownMenuItem<String>(
+//               //     value: value,
+//               //     child: Text(value),
+//               //   );
+//               // }).toList(),//               onChanged: (value) {
+//                 setState(() {
+//                   selectedCurrency = value!;
+//                 }),
+//               },
+//              )
+//              )
+  }
+
+  CupertinoPicker appl() {
+    return CupertinoPicker(
+        itemExtent: 32.0,
+        onSelectedItemChanged: (value) {},
+        children: [for (String i in currenciesList) Text(i)]);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,27 +91,7 @@ class _PriceScreenState extends State<PriceScreen> {
             alignment: Alignment.center,
             padding: const EdgeInsets.only(bottom: 30.0),
             color: Colors.lightBlue,
-            child: DropdownButton<String>(
-              value: selectedCurrency,
-              items: [
-                for (String i in currenciesList)
-                  DropdownMenuItem(
-                    value: i,
-                    child: Text(i),
-                  )
-              ],
-              // items: currencyList.map<DropdownMenuItem<String>>((String value) {
-              //   return DropdownMenuItem<String>(
-              //     value: value,
-              //     child: Text(value),
-              //   );
-              // }).toList(),
-              onChanged: (value) {
-                setState(() {
-                  selectedCurrency = value!;
-                });
-              },
-            ),
+            child: Platform.isIOS ? appl() : andrd(),
           ),
         ],
       ),
